@@ -141,6 +141,8 @@ Use the connected workbook **Staff Details and Task**:
 
 `https://docs.google.com/spreadsheets/d/1Yyo0l90Go6tdNM4SCZ9f1CI7XMiEegec3htUkzsA6wo/edit?gid=0#gid=0`
 
+The confirmed production Google identity for both this workbook and the authorized Gmail mailbox is `catherine@yensbooks.com`. A different connected identity must show `Account mismatch` and must not refresh either source.
+
 This exact URL is the canonical live workplan-and-task link. Store it in application configuration and reuse it for source evidence and optional reviewable staff-email drafts. Do not silently replace the workbook or `gid` with a similarly named source.
 
 Workbook timezone: `America/Winnipeg`. Workbook locale: `en_GB`.
@@ -217,6 +219,20 @@ Google Sheets, Gmail, and Google Drive adapters must verify the authenticated ac
 - Persist last successful refresh separately from last attempted refresh. Keep the prior verified snapshot labelled `Stale snapshot` when a later attempt fails.
 - Do not broaden searches, select lookalike files, switch mailboxes, or fall back to unrelated Drive records after an access error.
 - Connector reads run server-side with least-privilege scopes. OAuth tokens, refresh tokens, cookies, and provider error payloads must never be returned to the browser.
+
+## Shared live dashboard contract
+
+The production application is one persistent, shared dashboard rather than a copied chat, exported page, or per-user connector session.
+
+- Use Supabase Auth and PostgreSQL as the production session and persistence boundary. Every dashboard request requires an authenticated, allowlisted profile; anonymous access returns no operational data.
+- The confirmed System Administrator allowlist is `richardc@yensbooks.com`, `richardc@shellysbistro.com`, `scrum@aimadvisors.ca`, and `catherine@aimadvisors.ca`. These identities receive combined access across all four organizations. This dashboard-login allowlist is separate from the Google source identity.
+- One verified System Administrator connects the configured Google account once. Store its refresh token encrypted at rest and use it only in server-side connector jobs. Other dashboard users never receive the token and do not need mailbox access.
+- Materialize verified Google Sheet, Gmail, and approved Drive records into the shared database. All authorized users read the same latest successful snapshot, subject to their explicit organization grants and role.
+- A source refresh is an administrator-only, auditable mutation. It records the attempted time, successful time, source counts, connected identity, and a safe error while retaining the last successful snapshot after failure.
+- The local verified Sheet snapshot may be imported into the shared database only by an administrator using a server-only bootstrap command or endpoint. The source file remains Git-ignored and is never returned as a downloadable artifact.
+- Dashboard sharing means inviting an allowlisted user to the deployed application. Chat or task sharing is not a data-distribution mechanism and must not be presented as one.
+- Editors and administrators may save reviewed task status, assignment wording, and operational notes as shared dashboard overrides. Preserve the original Sheet fields, label the override, enforce organization scope, and audit the actor and time. Dashboard overrides do not claim Google Sheet write-back.
+- Shared exports use an explicit safe-field allowlist. Work email, OAuth data, message bodies, evidence excerpts, and attachment content are excluded from exports even when visible to an authorized user inside the application.
 
 ## Information architecture
 
@@ -389,6 +405,8 @@ Use authenticated server sessions in production. Apply organization and role aut
 
 The local reference build may keep mutations in memory, but it must say so. In-memory task issuance and email drafting are not equivalent to external delivery.
 
+For local development, an authorized bounded connector read may be materialized as a Git-ignored, server-only verified snapshot when runtime OAuth is not configured. The UI must label this mapping mode, retain the connected identity and retrieval time, and provide no in-app refresh control. Never commit the snapshot or expose a production endpoint from it by default. A verified local snapshot is not a production OAuth connection.
+
 ## UI requirements
 
 - Product name is `Workflow Management` in the page title, sidebar brand, documentation, and runtime output.
@@ -397,7 +415,8 @@ The local reference build may keep mutations in memory, but it must say so. In-m
 - Use the supplied official company logos in the persistent company tabs and selected-company overview identity: `/company-logos/audit-expert.png`, `/company-logos/yens-and-santos.png`, `/company-logos/aima.png`, and `/company-logos/shellys-bistro.png`. Do not redraw, substitute, or recolour the logos. The All Companies tab uses a neutral `WM` mark.
 - Change the scoped accent, soft background, and navigation colour tokens when the selected company changes: Audit Expert uses orange and slate; Yens and Santos uses gold and navy; AIMA uses teal and charcoal; Shelly's Bistro uses magenta and deep plum. Preserve accessible contrast and pair every state colour with text.
 - Use a restrained neutral canvas, one primary action colour, and the organization colours as scoped accents rather than full-page fills.
-- Use a 16px reading baseline for body copy, descriptions, form controls, and primary operational text. Navigation, tables, cards, projects, routines, connection details, and task text must render at 14px or larger; secondary metadata may render at 12–13px only when contrast and spacing remain strong. Major page headings use at least 30px, section headings use at least 18px, and primary touch targets are at least 42px high.\n- Treat text below 12px as a release-blocking accessibility defect. Increasing type must also increase the surrounding control height, card spacing, table width, and responsive navigation height so text never clips, overlaps, or becomes unreadably dense.
+- Use a 16px reading baseline for body copy, descriptions, form controls, and primary operational text. Navigation, tables, cards, projects, routines, connection details, and task text must render at 14px or larger; secondary metadata may render at 12–13px only when contrast and spacing remain strong. Major page headings use at least 30px, section headings use at least 18px, and primary touch targets are at least 42px high.
+- Treat text below 12px as a release-blocking accessibility defect. Increasing type must also increase the surrounding control height, card spacing, table width, and responsive navigation height so text never clips, overlaps, or becomes unreadably dense.
 - Wrap long organization names, task names, source titles, notes, and connector details without clipping. Keep tables horizontally scrollable when wrapping would destroy their structure.
 - Keep the first viewport focused on source health, urgent operational choices, the shared task scope, and clear next actions.
 - Keyboard-operable navigation, tables, dialogs, and actions.
@@ -431,4 +450,11 @@ The local reference build may keep mutations in memory, but it must say so. In-m
 18. Routines contains exactly the 159 verified routine tasks from the four approved workbooks; section headings and Trisha's non-routine `Sheet5` are excluded.
 19. Projects combine the 543 Sheet rows and 41 visible Otter actions under project-type groups while retaining source provenance; Community is metadata only.
 20. Every behavior change ships with a matching engineered update to this master prompt and is validated against its acceptance criteria.
-21. A transferred deployment can reconstruct every live-source binding and permitted data use from the portable registry, while credentials and raw operational records remain outside GitHub.\n22. Desktop and mobile views use the enlarged typography scale: 16px reading text, 14px-or-larger operational text, 12px minimum metadata, 30px-or-larger page headings, and no clipped or overlapping labels after responsive wrapping.
+21. A transferred deployment can reconstruct every live-source binding and permitted data use from the portable registry, while credentials and raw operational records remain outside GitHub.
+22. Desktop and mobile views use the enlarged typography scale: 16px reading text, 14px-or-larger operational text, 12px minimum metadata, 30px-or-larger page headings, and no clipped or overlapping labels after responsive wrapping.
+23. A production deployment stores one shared verified snapshot in PostgreSQL; authenticated users see the same current records without importing another user's ChatGPT conversation or connecting Gmail individually.
+24. Only an authorized System Administrator can connect or refresh Google sources. OAuth refresh tokens are encrypted server-side and are never returned by a dashboard API.
+25. Anonymous and non-allowlisted sessions receive no staff, task, Gmail, connector, or audit data; organization restrictions are enforced by PostgreSQL row-level policies and server-side authorization.
+26. A failed refresh retains and labels the previous successful shared snapshot instead of clearing the dashboard.
+27. Editor task updates persist for other authorized users, retain original Sheet provenance, display as dashboard-reviewed values, and create an audit event without changing Google Sheets.
+28. One administrator refresh materializes the four approved routine workbooks and readable Gmail-delivered TXT, EML, and DOCX evidence in the shared PostgreSQL snapshot; every authorized user sees that same persisted data without reconnecting Google or re-uploading another ChatGPT account's attachments.
