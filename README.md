@@ -59,7 +59,7 @@ Google Sheets and Gmail remain read-only. Gmail evidence without an explicit org
    - A Vercel project connected to this GitHub repository is the simplest deployment.
    - Set the variables from [`.env.example`](.env.example) in Vercel Production and Preview settings.
    - Set `APP_URL` and `GOOGLE_REDIRECT_URI` to the deployed HTTPS domain.
-   - Set `CRON_SECRET` if the scheduled refresh in `vercel.json` is enabled.
+   - Set `CRON_SECRET` if the daily scheduled refresh in `vercel.json` is enabled. Administrators can also refresh on demand from **Data & Connections**.
 
 ## Production setup sequence
 
