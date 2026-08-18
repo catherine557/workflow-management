@@ -15,6 +15,103 @@ This master prompt is the source of truth for product behavior, data contracts, 
 - Record exact authoritative source links, account identities, classification rules, and supplied asset paths here.
 - Never report a connector as integrated merely because its UI exists. A live source read and verified identity are required.
 
+
+## Portable live-source registry and transfer contract
+
+Registry revision: **August 18, 2026**. This section is the canonical portability manifest for every live source used by Workflow Management. Provider IDs, URLs, tab names, query boundaries, and use rules are configuration; OAuth tokens, cookies, client secrets, message bodies, transcript bodies, and copied operational rows are not. Never commit secrets or raw operational datasets to GitHub.
+
+An implementation transferred to a new environment must bind these exact sources, verify access with the exact authorized identity, validate the schemas, and complete a successful read-only refresh before showing live data. A similarly named file, another mailbox, or an accessible lookalike is not a substitute.
+
+### Canonical source bindings
+
+| Configuration key | Canonical value | Authorized use | Mode |
+| --- | --- | --- | --- |
+| `GOOGLE_AUTHORIZED_ACCOUNT` | `catherine@yensbooks.com` | Identity required for the workplan Sheet, approved Drive routine workbooks, and Gmail-delivered Otter evidence | Identity gate |
+| `WORKPLAN_SHEET_URL` | `https://docs.google.com/spreadsheets/d/1Yyo0l90Go6tdNM4SCZ9f1CI7XMiEegec3htUkzsA6wo/edit?gid=0#gid=0` | Canonical Staff Details and Task source | Read-only |
+| `WORKPLAN_SHEET_ID` | `1Yyo0l90Go6tdNM4SCZ9f1CI7XMiEegec3htUkzsA6wo` | Exact workbook lookup; never replace by name search | Read-only |
+| `WORKPLAN_SHEET_GID` | `0` | Canonical workbook entry link and evidence link | Read-only |
+| `WORKPLAN_ROSTER_TAB` | `Staffs Details` | Staff Directory, recipient validation, owner filters, and organization/department metadata | Read-only |
+| `WORKPLAN_TASK_TABS` | `Ashley, Moses, Paul, Jayce, Michael, Bella, Trisha, Christine, Richard` | Overview KPIs, Staff Workplan, Projects, assignments lookup, and source evidence | Read-only |
+| `WORKPLAN_TIMEZONE` | `America/Winnipeg` | Date parsing and source-local display | Read-only |
+| `WORKPLAN_LOCALE` | `en_GB` | Date and value parsing while retaining source strings | Read-only |
+| `ROUTINE_CHRISTINE_ID` | `1vWu4a3zroXvejKFs89sybe3uZWCQDuZpDClutf43WHs` | Christine Routine; approved Daily, Weekly, and Monthly sheets only | Read-only |
+| `ROUTINE_BELLA_ID` | `1ZrFaKNVXNWwE_TP2gGMjurztVy9txg0kPd6B1l14PVI` | Bella Routine; approved Daily, Weekly, and Monthly sheets only | Read-only |
+| `ROUTINE_ASHLEY_ID` | `1Sqti0LnpoBPzapPh4OG4u-QlOeergDEuS-6sOGYdO7Y` | Ashley Routine; approved Daily, Weekly, and Monthly sheets only | Read-only |
+| `ROUTINE_TRISHA_ID` | `1zk5UGy-GA15nepfrbm_MR0wJVmlIjGLJoOMEfvbMVmc` | Trisha Routine; approved Daily, Weekly, and Monthly sheets only; exclude `Sheet5` | Read-only |
+| `OTTER_GMAIL_QUERY` | `in:anywhere otter -in:spam -in:trash` | Bounded discovery of Otter-delivered Gmail evidence; results require sender and content verification | Read-only |
+| `OTTER_READABLE_EVIDENCE` | `Gmail body, .eml, .txt, .docx` | Message Audit evidence and validated project subtasks | Read-only |
+| `SIB_MASTER_PROMPT_URL` | `https://github.com/shellysbistro/shellys-rte-command-centre/blob/main/MASTER_BUILD_PROMPT.md` | SIB Factory requirements, research assignments, and current-versus-proposed source facts | Read-only, no-cache |
+| `COMPANY_LOGO_PATHS` | `/company-logos/audit-expert.png, /company-logos/yens-and-santos.png, /company-logos/aima.png, /company-logos/shellys-bistro.png` | Company tabs and selected-company identity only | Bundled assets |
+
+The routine workbook URL is derived only as `https://docs.google.com/spreadsheets/d/{ROUTINE_*_ID}/edit`; the stored workbook ID remains the lookup authority. Source IDs and URLs may be exposed in an administrator-only Connections view, but credentials and provider tokens must remain server-side.
+
+### Live source-to-feature data-use map
+
+| Source record set | Permitted product uses | Explicit exclusions |
+| --- | --- | --- |
+| `Staffs Details` roster rows | Staff Directory; real recipient validation; staff-owner filtering; role, department, email, and source organization display; staff-to-organization mapping | Never infer a missing organization, role, or email; never create a person from an Otter participant name |
+| Nine workplan tabs | Staff Workplan; Overview KPIs; project-type classification; project task membership; due-date and workload signals; source evidence | Community is metadata only; no invented project seeds, dates, blockers, completion times, or write-back |
+| Four approved routine workbooks | Routines tab; owner/cadence/section grouping; schedule, category, source status, notes, and provenance | Do not turn routines into workplan tasks, deadlines, attendance, or projects; exclude headings and unrelated sheets |
+| Gmail-delivered Otter evidence | Message Audit coverage; visible action extraction; source-group audit; proposed tasks; evidence-linked project subtasks after duplicate control and human recipient validation | Link-only Otter pages are not transcript text; no hidden action inference; no auto-issuance; do not expose unrelated sensitive narrative |
+| SIB Factory GitHub master prompt | SIB workstreams, R01–R12 research assignments, source version, current-versus-proposed facts, and fallback-status display | Proposed funding, sites, capacity, partners, or research findings must not be shown as current or secured |
+| Bundled company logos and theme tokens | Company navigation, selected-company branding, and accessible scoped themes | Do not use branding assets as authorization or organization-classification evidence |
+
+Every source-derived record must be scoped to an explicit organization identifier before tenant display. Source-provided organization values may be mapped by an administrator, but organization must never be inferred from a staff name, workbook filename, community, email wording, or adjacency.
+
+### Universal provenance contract
+
+Persist these fields, when supported, for every imported or derived record:
+
+- `source_system`, `source_account`, `source_id`, `source_title`, and `source_type`;
+- `source_container_id`, `source_tab_or_attachment`, `source_row_or_message_id`, and `source_url`;
+- `source_revision_or_modified_at`, `retrieved_at`, `last_successful_refresh_at`, and `access_result`;
+- original source values, mapped organization identifiers, schema version, and snapshot state;
+- for Gmail: thread ID, message ID, attachment filename, attachment content hash when available, evidence kind, sender-verification result, and duplicate-group key;
+- for derived project classification: normalized project type, similarity score, matched terms, contributing fields, rationale, classifier version, and derivation time.
+
+Normalized or classified values must be stored separately from immutable source values. Every displayed count must be reproducible from the same filtered record set and traceable to the last successful refresh.
+
+### Read-only connector scopes and secret boundary
+
+Request only the minimum server-side permissions required for the enabled sources, normally Google Sheets read-only, Google Drive read-only, and Gmail read-only. Do not request provider write scopes while the product write adapters are disabled.
+
+Never commit or expose:
+
+- OAuth access or refresh tokens, cookies, passwords, API keys, client secrets, or provider error payloads;
+- raw workbook exports, copied staff/workplan rows, Gmail bodies, transcript bodies, attachment contents, or personal/medical/HR narrative;
+- production snapshots, local caches, audit logs with personal data, or unredacted connector diagnostics.
+
+An optional `GITHUB_TOKEN` for private SIB source access is a server-side secret and must never have a value in this prompt, the client bundle, logs, screenshots, or repository history.
+
+### Transfer bootstrap and refresh sequence
+
+A transferred deployment must run this sequence before claiming a source is live:
+
+1. Load non-secret source configuration from this registry and load credentials from the destination secret manager.
+2. Verify the authenticated Google identity equals `catherine@yensbooks.com`.
+3. Resolve each approved source by exact ID or exact URL; do not begin with broad filename or mailbox discovery.
+4. Run a bounded metadata read and verify access, workbook title, required tabs, locale/timezone, required columns, and supported attachment types.
+5. Apply explicit organization mappings and authorization before content enters a tenant view.
+6. Import only the approved content boundary, retain original values, normalize separately, and run duplicate control.
+7. Recompute validation, status, project classification, counts, and coverage from the current source; do not copy prior snapshot totals into runtime logic.
+8. Persist the successful snapshot and provenance, then publish its counts and refresh time atomically.
+9. If any later refresh fails, retain the prior snapshot only as `Stale snapshot`, record the failed attempt separately, and show the safe remediation.
+
+Snapshot counts in this prompt are verification evidence, not seed data. The August 17, 2026 counts may be used as migration smoke-test expectations only; a transferred system must replace them with counts from its own verified refresh.
+
+### Transfer acceptance checklist
+
+Before a transferred deployment is accepted:
+
+- the canonical workbook resolves by ID and the roster/workplan schema matches;
+- all four routine workbook IDs resolve and only approved routine sheets import;
+- Gmail is authenticated as `catherine@yensbooks.com`, the bounded query runs, and sender/content validation filters false positives;
+- SIB Factory reports its live GitHub source version or a visible fallback state;
+- every tenant-visible record has explicit organization authorization and complete minimum provenance;
+- connector health distinguishes `Not verified`, `Connected`, `Healthy`, `Account mismatch`, `Access needed`, `Stale snapshot`, `Degraded`, and `Blocked`;
+- no source write occurs, no secret reaches the client or repository, and no raw live dataset is bundled for portability;
+- the runtime behavior and this master prompt pass the same acceptance criteria in the destination environment.
+
 ## Non-negotiable data rule
 
 Use real, authorized source records only.
@@ -335,3 +432,4 @@ The local reference build may keep mutations in memory, but it must say so. In-m
 18. Routines contains exactly the 159 verified routine tasks from the four approved workbooks; section headings and Trisha's non-routine `Sheet5` are excluded.
 19. Projects combine the 543 Sheet rows and 41 visible Otter actions under project-type groups while retaining source provenance; Community is metadata only.
 20. Every behavior change ships with a matching engineered update to this master prompt and is validated against its acceptance criteria.
+21. A transferred deployment can reconstruct every live-source binding and permitted data use from the portable registry, while credentials and raw operational records remain outside GitHub.
