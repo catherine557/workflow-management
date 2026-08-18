@@ -25,14 +25,14 @@ Checkpoint date: 2026-08-18 (America/Winnipeg)
 - Share UX now directs teammates to the authenticated live deployment rather than implying a chat or file export contains the operational database.
 
 - Next.js App Router foundation with strict TypeScript.
-- The required navigation: Overview, Message Audit, Projects, SIB Factory, Staff Directory, Staff Workplan, Routines, Data & Connections, and Audit History.
+- The required eight-destination navigation: Overview, Message Audit, Projects, Staff Directory, Staff Workplan, Routines, Data & Connections, and Audit History.
 - Persistent All Companies plus four organization workspace tabs.
 - Official supplied logo assets at the exact public paths required by the master prompt.
 - Organization-scoped accent, soft-background, and navigation colour tokens.
 - Responsive desktop, compact-sidebar, and mobile-drawer layouts.
 - Overview command center with source readiness, task-scope KPIs, quick paths, and decision-queue empty states.
 - Dedicated source-honest screens for all required destinations.
-- Canonical Google Sheet and SIB Factory links centralized in `lib/workspace-config.ts`.
+- Canonical Google Sheet and optional Shelly's Bistro evidence links centralized in `lib/workspace-config.ts`.
 - Explicit `Not verified`, unavailable-value, disabled-write, and empty states rather than fake records or zero counts.
 - Authorized Google Drive connector verification for the exact `Staff Details and Task` workbook, the connected `richardc@yensbooks.com` identity, `Staffs Details`, and all nine required workplan tabs.
 - A Git-ignored, server-only local Sheet snapshot adapter at `/api/google-sheet`, with production disabled by default, private no-store responses, source-schema validation, and safe unavailable states.
@@ -51,7 +51,7 @@ Checkpoint date: 2026-08-18 (America/Winnipeg)
 - `data/local/google-sheet-snapshot.json` contains authorized operational data, is ignored by Git, and must never be committed. The adapter is disabled in production unless explicitly overridden; that override alone does not supply production authorization.
 - External writes are disabled and the UI says so.
 - Historical snapshot counts in `MASTER_PROMPT.md` are not rendered as current production counts.
-- SIB Factory does not display fallback facts until a real bootstrap/fallback adapter exists.
+- Optional Shelly's Bistro GitHub evidence does not display fallback facts until a real bootstrap/fallback adapter exists and is never a primary tab.
 - The in-app workspace state is intentionally non-persistent.
 
 ## Verification completed
@@ -59,7 +59,7 @@ Checkpoint date: 2026-08-18 (America/Winnipeg)
 - TypeScript: pass (`tsc --noEmit`).
 - Next.js production build: pass; `/` is statically prerendered.
 - Browser verification: desktop and 390px mobile layouts reviewed.
-- Browser interaction checks: company switching, Message Audit navigation, mobile drawer, Data & Connections scroll reset, and SIB Factory tenant scoping passed.
+- Browser interaction checks: company switching, Message Audit navigation, mobile drawer, and Data & Connections scroll reset passed.
 - Browser console: no warnings or errors observed during the checks above.
 - Local Sheet API contract: pass; exact workbook title, connected identity, 17 staff rows, 543 workplan rows, and local snapshot mapping mode returned.
 - Connected browser verification: Overview KPIs reconcile to 543 total / 198 completed / 345 incomplete / 83 Needs Review / 37 blockers / 84 overdue; Data & Connections, Staff Directory, workplan pagination, blocker filtering, and explicit tenant filtering passed.

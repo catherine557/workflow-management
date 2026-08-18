@@ -7,7 +7,6 @@ import {
   Blocks,
   BookOpenCheck,
   BriefcaseBusiness,
-  Building2,
   CalendarClock,
   ChevronDown,
   CircleGauge,
@@ -22,7 +21,6 @@ import {
   History,
   Inbox,
   LayoutDashboard,
-  Link2,
   MailCheck,
   Menu,
   Network,
@@ -34,7 +32,6 @@ import {
   Settings2,
   ShieldCheck,
   SlidersHorizontal,
-  Sparkles,
   TableProperties,
   UserRoundSearch,
   UserPlus,
@@ -74,7 +71,6 @@ type ViewId =
   | "overview"
   | "message-audit"
   | "projects"
-  | "sib-factory"
   | "staff-directory"
   | "staff-workplan"
   | "routines"
@@ -92,7 +88,6 @@ const navigation: NavigationItem[] = [
   { id: "overview", label: "Overview", description: "Shared command center", icon: LayoutDashboard },
   { id: "message-audit", label: "Message Audit", description: "Validate source evidence", icon: MailCheck },
   { id: "projects", label: "Projects", description: "Evidence-linked work", icon: BriefcaseBusiness },
-  { id: "sib-factory", label: "SIB Factory", description: "Bistro factory operations", icon: Factory },
   { id: "staff-directory", label: "Staff Directory", description: "Verified roster", icon: UsersRound },
   { id: "staff-workplan", label: "Staff Workplan", description: "Unified task register", icon: ClipboardCheck },
   { id: "routines", label: "Routines", description: "Recurring responsibilities", icon: CalendarClock },
@@ -106,7 +101,7 @@ const sourceStates = [
   { name: "Staff Details and Task", detail: "Roster and workplan", icon: TableProperties },
   { name: "Google Drive", detail: "Approved routine files", icon: Cloud },
   { name: "Gmail / Otter", detail: "Authorized message evidence", icon: Inbox },
-  { name: "SIB Factory source", detail: "GitHub master prompt", icon: Factory },
+  { name: "Shelly's Bistro evidence", detail: "Optional GitHub master prompt", icon: Factory },
 ];
 
 type SheetState =
@@ -807,35 +802,6 @@ function Projects({ company, setView }: { company: Company; setView: (view: View
   );
 }
 
-function SibFactory({ company, setCompany, setView }: { company: Company; setCompany: (id: CompanyId) => void; setView: (view: ViewId) => void }) {
-  const inScope = company.id === "all" || company.id === "shellys-bistro";
-
-  return (
-    <>
-      <PageHeading
-        eyebrow="Shelly's Bistro / Dedicated operations"
-        title="SIB Factory"
-        description="Live factory requirements from the authoritative GitHub prompt, kept distinct from verified Sheet tasks and conceptual research assignments."
-      >
-        <a className="secondary-button" href={SIB_FACTORY_SOURCE_URL} target="_blank" rel="noreferrer">Open authority <ExternalLink size={15} /></a>
-      </PageHeading>
-      {!inScope ? (
-        <div className="scope-warning"><Building2 size={19} /><div><strong>Outside the active company scope</strong><p>SIB Factory belongs inside Shelly's Bistro; it is not a separate tenant.</p></div><button className="text-button" onClick={() => setCompany("shellys-bistro")}>Switch workspace <ArrowRight size={16} /></button></div>
-      ) : null}
-      <div className="source-banner">
-        <div><span className="source-banner-icon"><Link2 size={19} /></span><div><p className="eyebrow">Bootstrap source</p><h2>Master build prompt</h2><p>Live retrieval has not completed. No fallback facts are presented as current.</p></div></div>
-        <StatusPill />
-      </div>
-      <div className="three-column-page">
-        <section className="info-card"><span className="card-icon"><Factory size={20} /></span><p className="eyebrow">Requirements</p><h2>Workstreams</h2><p>Required navigation and operating workstreams will appear after the GitHub source is read successfully.</p></section>
-        <section className="info-card"><span className="card-icon"><Sparkles size={20} /></span><p className="eyebrow">Research</p><h2>Assignments R01–R12</h2><p>Conceptual research stays visibly separate from real staff workplan records.</p></section>
-        <section className="info-card"><span className="card-icon"><ClipboardCheck size={20} /></span><p className="eyebrow">Sheet evidence</p><h2>Verified tasks</h2><p>Shelly's Bistro workplan tasks require an authorized Sheet snapshot.</p></section>
-      </div>
-      <section className="section-block page-section"><EmptyPanel icon={Factory} title="Factory source not verified" copy="The server must request the raw main-branch prompt with no-store behavior before live requirements can appear." action="Review connections" onAction={() => setView("connections")} /></section>
-    </>
-  );
-}
-
 function Routines({ company, setView, routineState }: { company: Company; setView: (view: ViewId) => void; routineState: RoutineState }) {
   const routineOwners = ["Christine", "Bella", "Ashley", "Trisha"];
   const [owner, setOwner] = useState("all");
@@ -931,7 +897,7 @@ function Connections({ sheetState, sharedStatus, viewer, onRefresh }: { sheetSta
     { source: "Approved routine files", connector: "Google Sheets", identity: googleIdentity, status: connector?.status || "Access needed", tone: sheetTone, mode: "Read-only", attempted: attemptedTime, successful: refreshTime, records: routineCount != null ? `${routineCount} routine tasks` : "Not provided", mapping: "Four approved workbooks" },
     { source: "Authorized mailbox", connector: "Gmail", identity: googleIdentity, status: connector?.status || "Not verified", tone: sheetTone, mode: "Read-only", attempted: attemptedTime, successful: refreshTime, records: messageCount != null ? `${messageCount} bounded messages` : "Not provided", mapping: "Exact mailbox required" },
     { source: "Gmail-delivered evidence", connector: "Otter", identity: connector ? "Through shared Gmail connector" : "Through authorized Gmail", status: connector?.status || "Not verified", tone: sheetTone, mode: "Read-only", attempted: attemptedTime, successful: refreshTime, records: messageCount != null ? `${messageCount} source groups` : "Not provided", mapping: "Gmail evidence only" },
-    { source: "SIB Factory master prompt", connector: "GitHub", identity: "Not verified", status: "Not verified", tone: "neutral", mode: "Read-only", attempted: "Not provided", successful: "Not provided", records: "Not provided", mapping: "Shelly's Bistro", href: SIB_FACTORY_SOURCE_URL },
+    { source: "Shelly's Bistro master prompt", connector: "GitHub", identity: "Not verified", status: "Not verified", tone: "neutral", mode: "Read-only", attempted: "Not provided", successful: "Not provided", records: "Not provided", mapping: "Optional project evidence", href: SIB_FACTORY_SOURCE_URL },
   ];
   return (
     <>
@@ -1110,7 +1076,6 @@ export function DashboardShell({ viewer, sharedMode }: { viewer: DashboardViewer
     switch (activeView) {
       case "message-audit": return <MessageAudit company={company} setView={navigate} messageState={messageState} sharedStatus={sharedStatus} />;
       case "projects": return <Projects company={company} setView={navigate} />;
-      case "sib-factory": return <SibFactory company={company} setCompany={setSelectedCompany} setView={navigate} />;
       case "staff-directory": return <StaffDirectory company={company} setView={navigate} sheetState={sheetState} />;
       case "staff-workplan": return <StaffWorkplan company={company} setView={navigate} sheetState={sheetState} viewer={viewer} onRefresh={loadSharedData} />;
       case "routines": return <Routines company={company} setView={navigate} routineState={routineState} />;

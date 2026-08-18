@@ -10,7 +10,7 @@
   --line-strong: #d6dae2;
   --shadow-sm: 0 1px 2px rgba(21, 30, 43, 0.04), 0 5px 16px rgba(21, 30, 43, 0.035);
   --shadow-md: 0 12px 36px rgba(21, 30, 43, 0.08);
-  --sidebar-width: 248px;
+  --sidebar-width: 290px;
   --accent: #5966db;
   --accent-strong: #414db8;
   --accent-soft: #f0f2ff;
@@ -31,7 +31,7 @@ body {
   color: var(--ink);
   background: var(--canvas);
   font-family: Inter, Aptos, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -145,7 +145,7 @@ strong {
   border-radius: 10px;
   color: white;
   background: rgba(255, 255, 255, 0.1);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.04em;
 }
@@ -164,7 +164,7 @@ strong {
 
 .brand-copy span {
   color: rgba(255, 255, 255, 0.64);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .mobile-close {
@@ -205,14 +205,14 @@ strong {
 
 .sidebar-context small {
   color: rgba(255, 255, 255, 0.52);
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .sidebar-context strong {
   overflow: hidden;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -229,7 +229,7 @@ strong {
 .nav-label {
   margin: 3px 11px 7px;
   color: rgba(255, 255, 255, 0.42);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.09em;
   text-transform: uppercase;
@@ -240,7 +240,7 @@ strong {
   align-items: center;
   gap: 11px;
   width: 100%;
-  min-height: 50px;
+  min-height: 58px;
   padding: 7px 10px;
   border: 0;
   border-radius: 9px;
@@ -283,17 +283,16 @@ strong {
 }
 
 .nav-copy strong {
-  font-size: 12.5px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .nav-copy small {
-  overflow: hidden;
   margin-top: 2px;
   color: rgba(255, 255, 255, 0.4);
-  font-size: 10.5px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-size: 14px;
+  line-height: 1.35;
+  white-space: normal;
 }
 
 .nav-item.active .nav-copy small {
@@ -333,7 +332,7 @@ strong {
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.09);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -347,7 +346,7 @@ strong {
 
 .admin-copy strong {
   overflow: hidden;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -355,7 +354,7 @@ strong {
 
 .admin-copy small {
   color: rgba(255, 255, 255, 0.4);
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .collapse-button {
@@ -363,14 +362,14 @@ strong {
   align-items: center;
   gap: 9px;
   width: 100%;
-  min-height: 38px;
+  min-height: 42px;
   margin-top: 3px;
   padding: 7px 11px;
   border: 0;
   border-radius: 8px;
   background: transparent;
   color: rgba(255, 255, 255, 0.45);
-  font-size: 11px;
+  font-size: 14px;
   text-align: left;
   cursor: pointer;
 }
@@ -449,7 +448,7 @@ strong {
 
 .topbar-title span {
   color: var(--ink-faint);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -480,13 +479,13 @@ strong {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  min-height: 38px;
+  min-height: 42px;
   padding: 0 12px;
   border: 1px solid var(--line-strong);
   border-radius: 9px;
   background: var(--surface);
   color: #3e4857;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -539,7 +538,7 @@ strong {
 
 .company-tab > span:nth-child(2) {
   overflow: hidden;
-  font-size: 11.5px;
+  font-size: 14px;
   font-weight: 650;
   line-height: 1.25;
   text-overflow: ellipsis;
@@ -575,13 +574,13 @@ strong {
   border-color: color-mix(in srgb, var(--accent) 20%, white);
   color: white;
   background: linear-gradient(145deg, var(--accent), var(--accent-strong));
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.04em;
 }
 
 .wm-mark.compact {
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .selected-check {
@@ -661,7 +660,7 @@ strong {
 
 .hero-kicker {
   color: rgba(255, 255, 255, 0.52);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -670,7 +669,7 @@ strong {
 .hero-identity strong {
   max-width: 500px;
   margin-top: 4px;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.35;
 }
 
@@ -708,7 +707,7 @@ strong {
   min-height: 42px;
   padding: 0 15px;
   border-radius: 9px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 650;
   text-decoration: none;
   cursor: pointer;
@@ -786,7 +785,7 @@ strong {
 
 .health-heading span {
   color: rgba(255, 255, 255, 0.48);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -848,7 +847,7 @@ strong {
 
 .health-source strong {
   overflow: hidden;
-  font-size: 11.5px;
+  font-size: 14px;
   font-weight: 600;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -857,7 +856,7 @@ strong {
 .health-source small {
   margin-top: 2px;
   color: rgba(255, 255, 255, 0.43);
-  font-size: 9.5px;
+  font-size: 14px;
 }
 
 .status-pill {
@@ -871,7 +870,7 @@ strong {
   border-radius: 999px;
   color: #7a6117;
   background: #fff9e7;
-  font-size: 9.5px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.01em;
   white-space: nowrap;
@@ -979,7 +978,7 @@ strong {
 .info-card h2,
 .source-banner h2 {
   margin-bottom: 0;
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 670;
   line-height: 1.25;
 }
@@ -987,7 +986,7 @@ strong {
 .eyebrow {
   margin-bottom: 5px;
   color: var(--accent-strong);
-  font-size: 9.5px;
+  font-size: 14px;
   font-weight: 750;
   letter-spacing: 0.085em;
   text-transform: uppercase;
@@ -997,13 +996,13 @@ strong {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  min-height: 28px;
+  min-height: 42px;
   padding: 4px 9px;
   border: 1px solid color-mix(in srgb, var(--accent) 19%, var(--line));
   border-radius: 8px;
   color: var(--accent-strong);
   background: var(--accent-soft);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 650;
   white-space: nowrap;
 }
@@ -1028,7 +1027,7 @@ strong {
   justify-content: space-between;
   gap: 6px;
   color: var(--ink-soft);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 650;
   white-space: nowrap;
 }
@@ -1050,7 +1049,7 @@ strong {
   display: block;
   overflow: hidden;
   color: var(--ink-faint);
-  font-size: 9px;
+  font-size: 14px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -1073,7 +1072,7 @@ strong {
 
 .decision-summary span {
   color: var(--ink-soft);
-  font-size: 10.5px;
+  font-size: 14px;
 }
 
 .decision-summary strong {
@@ -1134,7 +1133,7 @@ strong {
 .launch-content small {
   margin-bottom: 2px;
   color: var(--accent-strong);
-  font-size: 8.5px;
+  font-size: 14px;
   font-weight: 750;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1142,13 +1141,13 @@ strong {
 
 .launch-content strong {
   margin-bottom: 3px;
-  font-size: 12.5px;
+  font-size: 14px;
   font-weight: 670;
 }
 
 .launch-content > span {
   color: var(--ink-soft);
-  font-size: 10.5px;
+  font-size: 14px;
   line-height: 1.45;
 }
 
@@ -1178,7 +1177,7 @@ strong {
 
 .empty-panel h3 {
   margin-bottom: 5px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 670;
 }
 
@@ -1186,7 +1185,7 @@ strong {
   max-width: 520px;
   margin: 0 auto;
   color: var(--ink-soft);
-  font-size: 10.5px;
+  font-size: 14px;
   line-height: 1.5;
 }
 
@@ -1195,14 +1194,14 @@ strong {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  min-height: 34px;
+  min-height: 42px;
   margin-top: 11px;
   padding: 4px 8px;
   border: 0;
   border-radius: 7px;
   color: var(--accent-strong);
   background: transparent;
-  font-size: 10.5px;
+  font-size: 14px;
   font-weight: 670;
   cursor: pointer;
 }
@@ -1227,7 +1226,7 @@ strong {
   border-radius: 8px;
   color: #7b641f;
   background: #fff9e9;
-  font-size: 9.5px;
+  font-size: 14px;
   line-height: 1.45;
 }
 
@@ -1251,7 +1250,7 @@ strong {
 .page-heading h1 {
   margin-bottom: 8px;
   color: var(--ink);
-  font-size: clamp(26px, 3.2vw, 36px);
+  font-size: clamp(30px, 3.2vw, 38px);
   font-weight: 690;
   line-height: 1.1;
   letter-spacing: -0.035em;
@@ -1261,7 +1260,7 @@ strong {
   max-width: 800px;
   margin-bottom: 0;
   color: var(--ink-soft);
-  font-size: 12.5px;
+  font-size: 14px;
   line-height: 1.65;
 }
 
@@ -1283,7 +1282,7 @@ strong {
   align-items: center;
   gap: 8px;
   max-width: 430px;
-  min-height: 39px;
+  min-height: 42px;
   padding: 0 11px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -1298,7 +1297,7 @@ strong {
   outline: 0;
   color: var(--ink-faint);
   background: transparent;
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .search-control input:disabled {
@@ -1311,7 +1310,7 @@ strong {
 
 .select-control {
   display: inline-flex;
-  min-height: 39px;
+  min-height: 42px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface-soft);
@@ -1325,26 +1324,26 @@ strong {
   color: var(--ink-soft);
   background: transparent;
   font: inherit;
-  font-size: 10.5px;
+  font-size: 14px;
 }
 
 .filter-button {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  min-height: 39px;
+  min-height: 42px;
   padding: 0 11px;
   border: 1px solid var(--line);
   border-radius: 8px;
   color: var(--ink-faint);
   background: var(--surface-soft);
-  font-size: 10.5px;
+  font-size: 14px;
 }
 
 .toolbar-note {
   margin-left: auto;
   color: var(--ink-faint);
-  font-size: 9.5px;
+  font-size: 14px;
 }
 
 .table-card {
@@ -1371,7 +1370,7 @@ th {
   border-bottom: 1px solid var(--line);
   color: #677080;
   background: var(--surface-soft);
-  font-size: 9px;
+  font-size: 14px;
   font-weight: 750;
   letter-spacing: 0.055em;
   text-transform: uppercase;
@@ -1383,7 +1382,7 @@ td {
   padding: 13px 14px;
   border-bottom: 1px solid var(--line);
   color: var(--ink-soft);
-  font-size: 10.5px;
+  font-size: 14px;
 }
 
 td strong {
@@ -1410,7 +1409,7 @@ tbody tr:last-child td {
 .table-secondary {
   margin-top: 4px;
   color: var(--ink-faint);
-  font-size: 9px;
+  font-size: 14px;
   line-height: 1.45;
 }
 
@@ -1420,7 +1419,7 @@ tbody tr:last-child td {
   align-items: center;
   gap: 5px;
   color: var(--accent-strong);
-  font-size: 10.5px;
+  font-size: 14px;
   font-weight: 650;
 }
 
@@ -1433,7 +1432,7 @@ tbody tr:last-child td {
 }
 
 .table-action {
-  min-height: 32px;
+  min-height: 42px;
   padding: 0 9px;
   border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--line));
   border-radius: 7px;
@@ -1444,7 +1443,7 @@ tbody tr:last-child td {
   width: fit-content;
   margin-top: 5px;
   color: #446180;
-  font-size: 8.5px;
+  font-size: 14px;
   font-weight: 650;
 }
 
@@ -1461,7 +1460,7 @@ tbody tr:last-child td {
   border-top: 1px solid var(--line);
   color: var(--ink-faint);
   background: var(--surface-soft);
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .table-pagination > div {
@@ -1470,13 +1469,13 @@ tbody tr:last-child td {
 }
 
 .table-pagination button {
-  min-height: 32px;
+  min-height: 42px;
   padding: 0 10px;
   border: 1px solid var(--line);
   border-radius: 7px;
   color: var(--ink-soft);
   background: var(--surface);
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .table-pagination button:disabled {
@@ -1556,13 +1555,13 @@ td[colspan] {
   display: flex;
   align-items: center;
   gap: 8px;
-  min-height: 40px;
+  min-height: 42px;
   padding: 8px 10px;
   border: 1px solid var(--line);
   border-radius: 8px;
   color: #4e5868;
   background: var(--surface-soft);
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .check-list li > span {
@@ -1583,7 +1582,7 @@ td[colspan] {
 .notice-banner p {
   margin-bottom: 0;
   color: var(--ink-soft);
-  font-size: 10.5px;
+  font-size: 14px;
   line-height: 1.55;
 }
 
@@ -1605,20 +1604,20 @@ td[colspan] {
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  min-height: 39px;
+  min-height: 42px;
   border-bottom: 1px solid var(--line);
 }
 
 .connection-summary dt {
   color: var(--ink-faint);
-  font-size: 9.5px;
+  font-size: 14px;
 }
 
 .connection-summary dd {
   overflow-wrap: anywhere;
   margin: 0;
   color: var(--ink);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 620;
   text-align: right;
 }
@@ -1659,7 +1658,7 @@ td[colspan] {
 .notice-banner strong {
   display: block;
   margin-bottom: 2px;
-  font-size: 11.5px;
+  font-size: 14px;
   font-weight: 670;
 }
 
@@ -1705,13 +1704,13 @@ td[colspan] {
 }
 
 .owner-tab {
-  min-height: 39px;
+  min-height: 42px;
   padding: 0 13px;
   border: 1px solid var(--line);
   border-radius: 9px;
   color: var(--ink-soft);
   background: var(--surface);
-  font-size: 10.5px;
+  font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -1763,14 +1762,14 @@ td[colspan] {
 
 .routine-sources strong {
   overflow: hidden;
-  font-size: 9.5px;
+  font-size: 14px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .routine-sources small {
   color: var(--ink-faint);
-  font-size: 8px;
+  font-size: 14px;
 }
 
 .routine-sources .status-pill {
@@ -1839,7 +1838,7 @@ td[colspan] {
   border-top: 1px solid var(--line);
   color: var(--ink-faint);
   background: var(--surface);
-  font-size: 9.5px;
+  font-size: 14px;
 }
 
 .nav-scrim {
@@ -1851,13 +1850,13 @@ td[colspan] {
   align-items: center;
   justify-content: center;
   gap: 7px;
-  min-height: 36px;
+  min-height: 42px;
   padding: 0 12px;
   border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--line));
   border-radius: 8px;
   color: var(--accent-strong);
   background: var(--accent-soft);
-  font-size: 10.5px;
+  font-size: 14px;
   font-weight: 670;
   cursor: pointer;
 }
@@ -1931,7 +1930,7 @@ td[colspan] {
 .share-dialog-copy {
   margin: 18px 0 14px;
   color: var(--ink-soft);
-  font-size: 11.5px;
+  font-size: 14px;
   line-height: 1.6;
 }
 
@@ -1957,12 +1956,12 @@ td[colspan] {
 }
 
 .privacy-summary strong {
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .privacy-summary span {
   color: #557264;
-  font-size: 9.5px;
+  font-size: 14px;
 }
 
 .share-details {
@@ -1979,7 +1978,7 @@ td[colspan] {
 
 .share-details dt,
 .share-details dd {
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .share-details dt {
@@ -2036,14 +2035,14 @@ td[colspan] {
 
 .login-card h1 {
   margin-bottom: 12px;
-  font-size: 28px;
+  font-size: 30px;
   line-height: 1.15;
   letter-spacing: -0.03em;
 }
 
 .login-card > p:not(.eyebrow, .login-message) {
   color: var(--ink-soft);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.65;
 }
 
@@ -2055,7 +2054,7 @@ td[colspan] {
 
 .login-card form > label {
   color: var(--ink);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 650;
 }
 
@@ -2093,7 +2092,7 @@ td[colspan] {
   border-radius: 8px;
   color: #385575;
   background: #f0f5fb;
-  font-size: 10.5px;
+  font-size: 14px;
   line-height: 1.5;
 }
 
@@ -2105,7 +2104,7 @@ td[colspan] {
   padding-top: 17px;
   border-top: 1px solid var(--line);
   color: var(--ink-faint);
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1.45;
 }
 
@@ -2145,14 +2144,14 @@ td[colspan] {
 
 .admin-action-grid h3 {
   margin-bottom: 6px;
-  font-size: 12.5px;
+  font-size: 14px;
 }
 
 .admin-action-grid p {
   min-height: 46px;
   margin-bottom: 14px;
   color: var(--ink-soft);
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1.5;
 }
 
@@ -2174,13 +2173,13 @@ td[colspan] {
 .invite-card form > input,
 .invite-card form > select {
   width: 100%;
-  min-height: 39px;
+  min-height: 42px;
   padding: 0 10px;
   border: 1px solid var(--line-strong);
   border-radius: 8px;
   color: var(--ink);
   background: var(--surface);
-  font-size: 10.5px;
+  font-size: 14px;
 }
 
 .invite-orgs {
@@ -2195,7 +2194,7 @@ td[colspan] {
   align-items: center;
   gap: 5px;
   color: var(--ink-soft);
-  font-size: 9px;
+  font-size: 14px;
 }
 
 .connector-error {
@@ -2207,7 +2206,7 @@ td[colspan] {
   border-radius: 8px;
   color: #7d4b34;
   background: #fff2ec;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .task-editor-form {
@@ -2219,7 +2218,7 @@ td[colspan] {
   display: grid;
   gap: 6px;
   color: var(--ink);
-  font-size: 10.5px;
+  font-size: 14px;
   font-weight: 650;
 }
 
@@ -2227,7 +2226,7 @@ td[colspan] {
 .task-editor-form select,
 .task-editor-form textarea {
   width: 100%;
-  min-height: 41px;
+  min-height: 42px;
   padding: 9px 10px;
   border: 1px solid var(--line-strong);
   border-radius: 8px;
@@ -2479,7 +2478,7 @@ td[colspan] {
   }
 
   .hero-copy > p {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .hero-actions {
