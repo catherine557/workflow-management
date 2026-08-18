@@ -40,7 +40,7 @@ An implementation transferred to a new environment must bind these exact sources
 | `ROUTINE_TRISHA_ID` | `1zk5UGy-GA15nepfrbm_MR0wJVmlIjGLJoOMEfvbMVmc` | Trisha Routine; approved Daily, Weekly, and Monthly sheets only; exclude `Sheet5` | Read-only |
 | `OTTER_GMAIL_QUERY` | `in:anywhere otter -in:spam -in:trash` | Bounded discovery of Otter-delivered Gmail evidence; results require sender and content verification | Read-only |
 | `OTTER_READABLE_EVIDENCE` | `Gmail body, .eml, .txt, .docx` | Message Audit evidence and validated project subtasks | Read-only |
-| `SIB_MASTER_PROMPT_URL` | `https://github.com/shellysbistro/shellys-rte-command-centre/blob/main/MASTER_BUILD_PROMPT.md` | SIB Factory requirements, research assignments, and current-versus-proposed source facts | Read-only, no-cache |
+| `SIB_MASTER_PROMPT_URL` | `https://github.com/shellysbistro/shellys-rte-command-centre/blob/main/MASTER_BUILD_PROMPT.md` | Optional Shelly's Bistro project evidence, research assignments, and current-versus-proposed source facts | Read-only, no-cache |
 | `COMPANY_LOGO_PATHS` | `/company-logos/audit-expert.png, /company-logos/yens-and-santos.png, /company-logos/aima.png, /company-logos/shellys-bistro.png` | Company tabs and selected-company identity only | Bundled assets |
 
 The routine workbook URL is derived only as `https://docs.google.com/spreadsheets/d/{ROUTINE_*_ID}/edit`; the stored workbook ID remains the lookup authority. Source IDs and URLs may be exposed in an administrator-only Connections view, but credentials and provider tokens must remain server-side.
@@ -53,7 +53,7 @@ The routine workbook URL is derived only as `https://docs.google.com/spreadsheet
 | Nine workplan tabs | Staff Workplan; Overview KPIs; project-type classification; project task membership; due-date and workload signals; source evidence | Community is metadata only; no invented project seeds, dates, blockers, completion times, or write-back |
 | Four approved routine workbooks | Routines tab; owner/cadence/section grouping; schedule, category, source status, notes, and provenance | Do not turn routines into workplan tasks, deadlines, attendance, or projects; exclude headings and unrelated sheets |
 | Gmail-delivered Otter evidence | Message Audit coverage; visible action extraction; source-group audit; proposed tasks; evidence-linked project subtasks after duplicate control and human recipient validation | Link-only Otter pages are not transcript text; no hidden action inference; no auto-issuance; do not expose unrelated sensitive narrative |
-| SIB Factory GitHub master prompt | SIB workstreams, R01–R12 research assignments, source version, current-versus-proposed facts, and fallback-status display | Proposed funding, sites, capacity, partners, or research findings must not be shown as current or secured |
+| Shelly's Bistro GitHub master prompt | Optional project evidence, R01–R12 research assignments, source version, current-versus-proposed facts, and fallback-status display | It is not a primary tab; proposed funding, sites, capacity, partners, or research findings must not be shown as current or secured |
 | Bundled company logos and theme tokens | Company navigation, selected-company branding, and accessible scoped themes | Do not use branding assets as authorization or organization-classification evidence |
 
 Every source-derived record must be scoped to an explicit organization identifier before tenant display. Source-provided organization values may be mapped by an administrator, but organization must never be inferred from a staff name, workbook filename, community, email wording, or adjacency.
@@ -106,7 +106,7 @@ Before a transferred deployment is accepted:
 - the canonical workbook resolves by ID and the roster/workplan schema matches;
 - all four routine workbook IDs resolve and only approved routine sheets import;
 - Gmail is authenticated as `catherine@yensbooks.com`, the bounded query runs, and sender/content validation filters false positives;
-- SIB Factory reports its live GitHub source version or a visible fallback state;
+- optional Shelly's Bistro GitHub evidence reports its live source version or a visible fallback state without adding a primary tab;
 - every tenant-visible record has explicit organization authorization and complete minimum provenance;
 - connector health distinguishes `Not verified`, `Connected`, `Healthy`, `Account mismatch`, `Access needed`, `Stale snapshot`, `Degraded`, and `Blocked`;
 - no source write occurs, no secret reaches the client or repository, and no raw live dataset is bundled for portability;
@@ -225,14 +225,13 @@ Primary tabs, in this order:
 1. Overview
 2. Message Audit
 3. Projects
-4. SIB Factory
-5. Staff Directory
-6. Staff Workplan
-7. Routines
-8. Data & Connections
-9. Audit History
+4. Staff Directory
+5. Staff Workplan
+6. Routines
+7. Data & Connections
+8. Audit History
 
-Do not add separate Staff Schedule or Review Queue tabs. Routines is recurring responsibility evidence, not a staff schedule. Message Audit contains its own validation result and explicit human task-issuance action.
+Do not add separate SIB Factory, Staff Schedule, or Review Queue tabs. Routines is recurring responsibility evidence, not a staff schedule. Message Audit contains its own validation result and explicit human task-issuance action. Shelly's Bistro remains a company workspace; its verified work appears through Overview, Projects, Staff Workplan, and Data & Connections.
 
 ## Overview command center
 
@@ -315,17 +314,17 @@ Derived project status:
 - otherwise any task Pending → Pending;
 - otherwise → Needs Review.
 
-## SIB Factory
+## Shelly's Bistro source handling
 
-SIB Factory is a dedicated operational tab within Shelly's Bistro, not a fifth organization or authorization tenant. Its authoritative product source is:
+Do not create a dedicated SIB Factory primary tab. Shelly's Bistro is one of the four company workspaces, not a fifth organization or authorization tenant. Its verified Sheet tasks must be available through the shared Overview, Projects, and Staff Workplan experiences. Its optional read-only product evidence source is:
 
 `https://github.com/shellysbistro/shellys-rte-command-centre/blob/main/MASTER_BUILD_PROMPT.md`
 
-On every dashboard bootstrap, request the raw `main/MASTER_BUILD_PROMPT.md` with `Cache-Control: no-store` behavior. Parse and show the source version, required navigation/workstreams, research assignments, current-versus-proposed facts, and proposed funding structure. Never treat proposed funding, site, capacity, partnerships, or research results as current or secured.
+When this source is enabled, request the raw `main/MASTER_BUILD_PROMPT.md` with `Cache-Control: no-store` behavior. Surface its version and safe status through Data & Connections or a Shelly's Bistro project detail, not a primary navigation destination. Never treat proposed funding, site, capacity, partnerships, or research results as current or secured.
 
 If GitHub is unavailable or private, show a visible `Fallback snapshot` state using the bundled August 15, 2026 last-known-good facts. Display the last checked time and safe error; never silently present fallback data as live. Support optional server-side `GITHUB_TOKEN`; never expose it to the browser.
 
-Combine the source view with verified Shelly's Bistro Sheet tasks, grouped by the same project-type similarity engine. Keep GitHub requirements, conceptual research assignments, and Sheet workplan tasks visually distinct.
+Combine approved source evidence with verified Shelly's Bistro Sheet tasks only inside the shared project-type similarity engine. Keep GitHub requirements, conceptual research assignments, and Sheet workplan tasks visually distinct.
 
 ## Message Audit
 
@@ -376,7 +375,7 @@ Show the verified Google Sheet source and honest connector states:
 - Google Drive: read-only discovery; show the connected identity and the count of explicitly mapped sources, never the count of every accessible file;
 - Gmail: `catherine@yensbooks.com`, read-only after explicit user approval and an exact account-identity match;
 - Otter: connected through authorized Gmail-delivered EML, TXT, and DOCX evidence; read-only. ZIP and MP3 limitations are disclosed.
-- GitHub: SIB Factory master prompt, refreshed with no-cache on every dashboard bootstrap; degraded when the last-known-good snapshot is in use.
+- GitHub: optional Shelly's Bistro master-prompt evidence, refreshed with no-cache when enabled; degraded when the last-known-good snapshot is in use; never represented as a dedicated primary tab.
 
 Display connected identity, last attempted refresh, last successful refresh, record counts, mapping mode, safe errors, and write mode. Disabled controls must clearly explain why a source cannot sync. OAuth secrets must never be entered into or returned to the browser.
 
@@ -394,7 +393,7 @@ The local reference build may keep mutations in memory, but it must say so. In-m
 
 - Product name is `Workflow Management` in the page title, sidebar brand, documentation, and runtime output.
 - The UI must be clean, calm, and decision-focused: strong visual hierarchy, generous spacing, compact but legible cards, consistent alignment, and no decorative clutter.
-- Responsive desktop and mobile layouts with a colourful but accessible multi-company theme. All nine primary destinations remain reachable on small screens.
+- Responsive desktop and mobile layouts with a colourful but accessible multi-company theme. All eight primary destinations remain reachable on small screens.
 - Use the supplied official company logos in the persistent company tabs and selected-company overview identity: `/company-logos/audit-expert.png`, `/company-logos/yens-and-santos.png`, `/company-logos/aima.png`, and `/company-logos/shellys-bistro.png`. Do not redraw, substitute, or recolour the logos. The All Companies tab uses a neutral `WM` mark.
 - Change the scoped accent, soft background, and navigation colour tokens when the selected company changes: Audit Expert uses orange and slate; Yens and Santos uses gold and navy; AIMA uses teal and charcoal; Shelly's Bistro uses magenta and deep plum. Preserve accessible contrast and pair every state colour with text.
 - Use a restrained neutral canvas, one primary action colour, and the organization colours as scoped accents rather than full-page fills.
@@ -418,7 +417,7 @@ The local reference build may keep mutations in memory, but it must say so. In-m
 4. Staff Workplan contains all 543 verified rows at the current snapshot and labels unknown states Needs Review.
 5. Overview KPIs reconcile exactly to the filtered workplan.
 6. Projects are grouped by explainable task/name note similarity; Community never determines the project and unresolved rows appear as `Needs Classification`.
-7. SIB Factory exposes the master-prompt workstreams and R01–R12 research assignments, refreshes GitHub on bootstrap, and visibly labels fallback data.
+7. SIB Factory is absent from desktop and mobile primary navigation; Shelly's Bistro remains a company workspace whose verified tasks appear through shared Overview, Projects, and Staff Workplan views.
 8. Message Audit contains the August 17, 2026 verified live snapshot of 29 unique Otter source groups and 41 visible action items, retains 13 coverage-only groups without manufacturing tasks, and records the 62-hit search boundary.
 9. An invalid message audit saves its real validation errors and cannot issue a task.
 10. A valid message audit referencing a real staff record can issue exactly one dashboard task by button click.
